@@ -1,0 +1,3 @@
+module Blastramp
+  # Your code goes here...
+end
