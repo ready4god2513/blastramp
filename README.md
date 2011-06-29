@@ -51,6 +51,7 @@ Usage example
 
     order_upload = Blastramp::OrderUpload.new(blastramp, order)
     order_upload.submit
+
     
 Credits
 -------

@@ -13,10 +13,6 @@ module Blastramp
     def client      
       @client ||= Savon::Client.new do
         wsdl.document = self.endpoint
-        # wsdl.document = "http://www.ioperate.net/ws/inventory/inventoryws.asmx?wsdl"
-        # 
-        # wsdl.endpoint = "http://www.ioperate.net/ws/inventory/inventoryws.asmx"
-        # wsdl.namespace = "http://chrome52/webservices"
       end
     end
     
