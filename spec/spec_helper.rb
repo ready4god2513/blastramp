@@ -7,7 +7,7 @@ RSpec.configure do |config|
   config.include Savon::Spec::Macros
 
   config.before :each do
-    # Ensure we don't actually send requests over the network
+    # Ensure we don't actually send finds over the network
     HTTPI.expects(:get).never
     HTTPI.expects(:post).never
   end

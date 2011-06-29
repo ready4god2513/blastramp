@@ -10,14 +10,40 @@ describe Blastramp::InventoryCountQuery do
     end
   end
   
-  describe "inventory_count_proxy" do
+  describe "inventory_count_query" do
     it "uses InventoryCountQuery on API" do
       savon.expects('InventoryCountQuery').with(
         'VendorCode' => 'ABC', 
         'VendorAccessKey' => 'TWX45IX2R9G35394', 
         'Sku' => 'AAA-01-XX').returns(:many)
-      subject.find_inventory_counts_for_sku('AAA-01-XX')
+      subject.find('AAA-01-XX')
     end
+    
+    context "when many InventoryCounts exist" do
+      before :each do
+        savon.stubs('InventoryCountQuery').returns(:many)
+      end
+    
+      let(:results) { subject.find('AAA-01-XX') }
+    
+      it "returns an InventoryCount object for each result" do
+        results.size.should == 2
+        results.all? { |result| result.should be_instance_of(Blastramp::InventoryCount) }
+      end
+    end
+    
+    context "when one InventoryCount is requested" do
+      before :each do
+        savon.stubs('InventoryCountQuery').returns(:many)
+      end
+    
+      let(:result) { subject.find_by_whid('AAA-01-XX','0001') }
+    
+      it "returns a single InventoryCount object" do
+        result.should be_instance_of(Blastramp::InventoryCount)
+      end
+    end
+    
   end
 
 end

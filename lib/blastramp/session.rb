@@ -25,9 +25,10 @@ module Blastramp
     def request(action, &block)
       response = client.request :soap, action, &block
       response_hash = response.to_hash
-
+      action = action.snake_case
       response_key = "#{action}_response".intern
       result_key = "#{action}_result".intern
+
       if response_hash[response_key] && response_hash[response_key][result_key]
         response_hash[response_key][result_key]
       else

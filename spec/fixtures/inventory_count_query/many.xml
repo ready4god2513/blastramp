@@ -2,8 +2,8 @@
 <soap:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"
 xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
   <soap:Body>
-    <InventoryCountProxyResponse xmlns="http://chrome52/webservices/">
-      <InventoryCountProxyResult>
+    <InventoryCountQueryResponse xmlns="http://chrome52/webservices/">
+      <InventoryCountQueryResult>
         <Result>SUCCESS</Result>
         <ErrorDesc></ErrorDesc>
         <ErrorNumber>0</ErrorNumber>
@@ -58,7 +58,7 @@ xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
             </InventoryCount>
           </Counts>
         </QueryResults>
-      </InventoryCountProxyResult>
-    </InventoryCountProxyResponse>
+      </InventoryCountQueryResult>
+    </InventoryCountQueryResponse>
   </soap:Body>
 </soap:Envelope>

@@ -11,11 +11,16 @@ Usage example
     blastramp = Blastramp::Session.new('vendor_code', 'vendor_access_key')
 
     # Get array of inventory counts for a product SKU at all warehouses:
-    inventory_counts = blastramp.inventory_counts.find_inventory_counts_for_sku('1000-BLK-M')
+    inventory_counts = blastramp.inventory_counts.find('1000-BLK-M')
 
-    If a warehouse parameter is given, will return a single warehouse inventory_count     
-    inventory_count = blastramp.inventory_counts.find_inventory_counts_for_sku('AAA-01-XX','0001')
+    # Get a single inventory count for one warehouse id:
+    inventory_count = blastramp.inventory_counts.find_by_whid('1000-BLK-M','0001')
 
+    # Get # of available_to_sell units from an inventory_count
+    inventory_count.available_to_sell
+    inventory_count.backordered
+    inventory_count.total_shipped
+    
     # Create order:
     order = Blastramp::OrderUpload.new
     order.session = blastramp

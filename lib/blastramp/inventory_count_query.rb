@@ -6,8 +6,15 @@ module Blastramp
     def initialize(session)
       @session = session
     end
+    
+    # Returns a new, unpersisted Blastramp::InventoryCount
+    def build(values = {})
+      inventory_count = Blastramp::InventoryCount.new(values)
+      # inventory_count.session = session
+      inventory_count
+    end
 
-    def find_inventory_counts_for_sku(sku)
+    def find(sku)
       # Get a list of InventoryCounts from Blastramp
       response = session.request 'InventoryCountQuery' do
         http.headers["SOAPAction"] = "http://chrome52/webservices/InventoryCountQuery" 
@@ -19,17 +26,21 @@ module Blastramp
         }
       end
 
-      # # Make sure we always have an array of handles even if the result only contains one
-      # handles = [response[:query_results][:counts][:inventory_count]].flatten.reject(&:blank?)
-      # 
-      # # Create partial InventoryCount entities
-      # handles.collect do |handle|
-      #   inventory_count = build
-      #   inventory_count.persisted = true
-      #   inventory_count.whid = handle[:whid]
-      #   inventory_count
-      # end
+      # Make sure we always have an array of handles even if the result only contains one
+      handles = [response[:query_results][:counts][:inventory_count]].flatten.reject(&:blank?)
+      
+      # Create partial InventoryCount entities
+      handles.collect do |handle|
+        inventory_count = build(handle)
+        inventory_count
+      end
 
+    end
+    
+    def find_by_whid(sku, whid)
+      counts = self.find(sku)
+      counts = counts.select{|i| i.whid == whid}
+      count = counts[0]
     end
 
   end
