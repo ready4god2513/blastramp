@@ -34,3 +34,8 @@ end
 def stub_session
   Blastramp::Session.new('ABC', 'TWX45IX2R9G35394')
 end
+
+def stub_order
+  order = Blastramp::Order.new
+end
+

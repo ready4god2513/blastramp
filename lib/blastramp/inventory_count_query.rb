@@ -16,7 +16,8 @@ module Blastramp
 
     def find(sku)
       # Get a list of InventoryCounts from Blastramp
-      response = session.request 'InventoryCountQuery' do
+      endpoint = "http://www.ioperate.net/ws/order/orderws.asmx?wsdl"
+      response = session.request endpoint, 'InventoryCountQuery' do
         http.headers["SOAPAction"] = "http://chrome52/webservices/InventoryCountQuery" 
         
         soap.body = {

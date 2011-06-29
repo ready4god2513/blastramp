@@ -1,16 +1,19 @@
 module Blastramp
   class Session
     attr_accessor :vendor_code, :vendor_access_key
+    attr_accessor :endpoint
     
     def initialize(vendor_code, vendor_access_key)
       self.vendor_code = vendor_code
       self.vendor_access_key = vendor_access_key
+      self.endpoint = nil
     end
     
     # Returns the Savon::Client used to connect to Blastramp
     def client      
       @client ||= Savon::Client.new do
-        wsdl.document = "http://www.ioperate.net/ws/inventory/inventoryws.asmx?wsdl"
+        wsdl.document = self.endpoint
+        # wsdl.document = "http://www.ioperate.net/ws/inventory/inventoryws.asmx?wsdl"
         # 
         # wsdl.endpoint = "http://www.ioperate.net/ws/inventory/inventoryws.asmx"
         # wsdl.namespace = "http://chrome52/webservices"
@@ -22,7 +25,8 @@ module Blastramp
       @inventory_counts ||= InventoryCountQuery.new(self)
     end
     
-    def request(action, &block)
+    def request(ep, action, &block)
+      self.endpoint = ep
       response = client.request :soap, action, &block
       response_hash = response.to_hash
       action = action.snake_case

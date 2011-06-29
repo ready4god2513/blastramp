@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<soap:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+  <soap:Body>
+    <OrderUploadResponse xmlns="http://chrome52/webservices/">
+      <OrderUploadResult>
+        <result>SUCCESS</result>
+        <error/>
+        <orderids>
+          <string>12345</string>
+          <string>67890</string>
+        </orderids>
+      </OrderUploadResult>
+    </OrderUploadResponse>
+  </soap:Body>
+</soap:Envelope>
