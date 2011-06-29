@@ -17,13 +17,6 @@ describe Blastramp::Session do
       subject.client.should be_instance_of(::Savon::Client)
     end
   end
-
-  describe "connect" do
-    it "connects to Blastramp" do
-      savon.expects('connect').with(has_entries('VendorCode' => 'ABC','VendorAccessKey' => 'TWX45IX2R9G35394')).returns(:success)
-      subject.connect
-    end
-  end
   
   describe "inventory_counts" do
     it "returns an InventoryCountQuery" do

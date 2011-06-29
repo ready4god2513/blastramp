@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<soap:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+  <soap:Body>
+    <InventoryCountProxyResponse xmlns="http://chrome52/webservices/">
+      <InventoryCountProxyResult>
+        <Result>SUCCESS</Result>
+        <ErrorDesc></ErrorDesc>
+        <ErrorNumber>0</ErrorNumber>
+        <QueryResults>
+          <Sku>AAA-01-XX</Sku>
+          <Counts>
+            <InventoryCount>
+              <WHID>0001</WHID>
+              <AvailableToAllocate>0</AvailableToAllocate>
+              <AllocatedAndReleased>0</AllocatedAndReleased>
+              <Backordered>0</Backordered>
+              <Cancelled>0</Cancelled>
+              <Unreleased>0</Unreleased>
+              <BeingManufactured>0</BeingManufactured>
+              <TotalExpected>0</TotalExpected>
+              <TotalReceived>0</TotalReceived>
+              <TotalShipped>0</TotalShipped>
+              <StockTransferIn>0</StockTransferIn>
+              <StockTransferOut>0</StockTransferOut>
+              <OriginalPO>0</OriginalPO>
+              <AmendedPO>0</AmendedPO>
+              <UnshippedPO>0</UnshippedPO>
+              <ActiveShipment>0</ActiveShipment>
+              <AvailableToSell>0</AvailableToSell>
+              <CurrentInStock>0</CurrentInStock>
+              <TotalSalesOrder>0</TotalSalesOrder>
+              <ReceivingVariance>0</ReceivingVariance>
+              <WarehouseVariance>0</WarehouseVariance>
+            </InventoryCount>
+            <InventoryCount>
+              <WHID>0002</WHID>
+              <AvailableToAllocate>0</AvailableToAllocate>
+              <AllocatedAndReleased>0</AllocatedAndReleased>
+              <Backordered>0</Backordered>
+              <Cancelled>0</Cancelled>
+              <Unreleased>0</Unreleased>
+              <BeingManufactured>0</BeingManufactured>
+              <TotalExpected>0</TotalExpected>
+              <TotalReceived>0</TotalReceived>
+              <TotalShipped>0</TotalShipped>
+              <StockTransferIn>0</StockTransferIn>
+              <StockTransferOut>0</StockTransferOut>
+              <OriginalPO>0</OriginalPO>
+              <AmendedPO>0</AmendedPO>
+              <UnshippedPO>0</UnshippedPO>
+              <ActiveShipment>0</ActiveShipment>
+              <AvailableToSell>0</AvailableToSell>
+              <CurrentInStock>0</CurrentInStock>
+              <TotalSalesOrder>0</TotalSalesOrder>
+              <ReceivingVariance>0</ReceivingVariance>
+              <WarehouseVariance>0</WarehouseVariance>
+            </InventoryCount>
+          </Counts>
+        </QueryResults>
+      </InventoryCountProxyResult>
+    </InventoryCountProxyResponse>
+  </soap:Body>
+</soap:Envelope>

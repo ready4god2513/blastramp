@@ -9,13 +9,12 @@ Usage example
 -------------
 
     blastramp = Blastramp::Session.new('vendor_code', 'vendor_access_key')
-    blastramp.connect
 
     # Get array of inventory counts for a product SKU at all warehouses:
-    inventory_counts = blastramp.find_inventory_counts_for_sku('AAA-01-XX')
-    
+    inventory_counts = blastramp.inventory_counts.find_inventory_counts_for_sku('1000-BLK-M')
+
     If a warehouse parameter is given, will return a single warehouse inventory_count     
-    inventory_count = blastramp.find_inventory_counts_for_sku('AAA-01-XX','0001')
+    inventory_count = blastramp.inventory_counts.find_inventory_counts_for_sku('AAA-01-XX','0001')
 
     # Create order:
     order = Blastramp::OrderUpload.new
@@ -50,3 +49,9 @@ Usage example
     order.order_items << order_item
 
     order.save
+    
+Credits
+-------
+
+Sponsored by [zkron.com](http://zkron.com)
+

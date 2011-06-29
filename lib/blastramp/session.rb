@@ -10,24 +10,29 @@ module Blastramp
     # Returns the Savon::Client used to connect to Blastramp
     def client      
       @client ||= Savon::Client.new do
-        wsdl.endpoint = "http://www.ioperate.net/ws/inventory/inventoryws.asmx"
-        wsdl.namespace = "http://chrome52/webservices"
+        wsdl.document = "http://www.ioperate.net/ws/inventory/inventoryws.asmx?wsdl"
+        # 
+        # wsdl.endpoint = "http://www.ioperate.net/ws/inventory/inventoryws.asmx"
+        # wsdl.namespace = "http://chrome52/webservices"
       end
     end
     
-    # Authenticates with Blastramp
-    def connect
-      response = client.request :connect do
-        soap.body = {
-          'VendorCode' => self.vendor_code,
-          'VendorAccessKey' => self.vendor_access_key
-        }
-      end
-    end
-    
-    # Provides access to the debtors
+    # Provides access to the inventory counts
     def inventory_counts
       @inventory_counts ||= InventoryCountQuery.new(self)
+    end
+    
+    def request(action, &block)
+      response = client.request :soap, action, &block
+      response_hash = response.to_hash
+
+      response_key = "#{action}_response".intern
+      result_key = "#{action}_result".intern
+      if response_hash[response_key] && response_hash[response_key][result_key]
+        response_hash[response_key][result_key]
+      else
+        {}
+      end
     end
 
   end
