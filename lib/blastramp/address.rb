@@ -1,6 +1,6 @@
 module Blastramp
   class Address < Entity
-    has_properties :name, :line1, :line2, :line3, :city, :provstate, :country, :phone, :fax, :email, :web, :contact
+    has_properties :name, :line1, :line2, :line3, :city, :provstate, :postalcode, :country, :phone, :fax, :email, :web, :contact
     
     def initialize_defaults
       self.name = '' # Name as it appears on the ship to address label.
@@ -9,6 +9,7 @@ module Blastramp
       self.line3 = ''
       self.city = '' # City name as on the ship to address label
       self.provstate = '' # Province/State as it appears on the ship to address label
+      self.postalcode = '' # Postal or Zip code as it appears on the ship to address label
       self.country = 'CA' # Country name as it appears on the ship to address label.
       self.phone = '--' # Phone number (any format). If not known submit "--"
       self.fax = '--' # Fax number (any format). If not known submit "--"
@@ -27,6 +28,7 @@ module Blastramp
       data['line3'] = line3
       data['city'] = city
       data['provstate'] = provstate
+      data['postalcode'] = postalcode
       data['country'] = country
       data['phone'] = phone
       data['fax'] = fax
