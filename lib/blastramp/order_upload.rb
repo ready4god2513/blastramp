@@ -21,6 +21,7 @@ module Blastramp
           'Batch' => {:order => order.soap_data}
         }
       end
+      response.to_hash[:result]
     end
   end
 end
