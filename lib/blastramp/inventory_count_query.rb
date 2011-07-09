@@ -26,14 +26,18 @@ module Blastramp
           'Sku' => sku
         }
       end
-
-      # Make sure we always have an array of handles even if the result only contains one
-      handles = [response[:query_results][:counts][:inventory_count]].flatten.reject(&:blank?)
       
-      # Create partial InventoryCount entities
-      handles.collect do |handle|
-        inventory_count = build(handle)
-        inventory_count
+      if (response.to_hash[:result] == 'SUCCESS')      
+        # Make sure we always have an array of handles even if the result only contains one
+        handles = [response[:query_results][:counts][:inventory_count]].flatten.reject(&:blank?)
+      
+        # Create partial InventoryCount entities
+        handles.collect do |handle|
+          inventory_count = build(handle)
+          inventory_count
+        end
+      else
+        raise(SKUDoesNotExistError.new)
       end
 
     end

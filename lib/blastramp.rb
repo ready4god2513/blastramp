@@ -11,6 +11,8 @@ require 'blastramp/order'
 require 'blastramp/order_item'
 require 'blastramp/order_upload'
 require 'blastramp/session'
+require 'blastramp/error'
+
 
 module Blastramp
 end

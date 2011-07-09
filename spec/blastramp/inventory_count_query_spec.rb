@@ -43,7 +43,27 @@ describe Blastramp::InventoryCountQuery do
         result.should be_instance_of(Blastramp::InventoryCount)
       end
     end
+
+    context "when SKU does not exist" do
+      before :each do
+        savon.stubs('InventoryCountQuery').returns(:sku_does_not_exist)
+      end
     
+      it "returns a SKUDoesNotExistError" do
+        expect{subject.find('XXXX-99-XX')}.to raise_error(Blastramp::SKUDoesNotExistError)
+      end
+    end
+
+    context "when one InventoryCount is requested and SKU does not exist" do
+      before :each do
+        savon.stubs('InventoryCountQuery').returns(:sku_does_not_exist)
+      end
+    
+      it "returns a SKUDoesNotExistError" do
+        expect{subject.find_by_whid('AAA-01-XX','0001')}.to raise_error(Blastramp::SKUDoesNotExistError)
+      end
+    end
+   
   end
 
 end
