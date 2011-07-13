@@ -2,11 +2,11 @@ module Blastramp
   class OrderUpload
     # Associations
     attr_reader :session
-    attr_reader :order
+    attr_reader :orders
 
-    def initialize(session, order)
+    def initialize(session, orders)
       @session = session
-      @order = order
+      @orders = orders
     end
     
     def submit
@@ -18,14 +18,16 @@ module Blastramp
         soap.body = {
           'VendorCode' => session.vendor_code,
           'VendorAccessKey' => session.vendor_access_key,
-          'Batch' => {:order => order.soap_data}
+          'Batch' => orders.collect {|o| {:order => o.soap_data}}
         }
       end
       if (response.to_hash[:result] == 'SUCCESS')      
-        response.to_hash[:result]
+        response.to_hash[:orderids][:string]
       elsif (response.to_hash[:error] == 'Failed to Authenticate.')
         raise(AuthenticationFailure.new)
-      end      
+      else
+        raise "Blastramp: An unknown error occured"
+      end
     end
   end
 end

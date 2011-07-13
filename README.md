@@ -49,7 +49,7 @@ Usage example
     order_item.item_value = 12.99
     order.order_items << order_item
 
-    order_upload = Blastramp::OrderUpload.new(blastramp, order)
+    order_upload = Blastramp::OrderUpload.new(blastramp, [order])
     order_upload.submit
 
     
