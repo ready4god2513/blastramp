@@ -17,7 +17,7 @@ describe Blastramp::OrderUpload do
       savon.expects('OrderUpload').with(
         'VendorCode' => 'ABC', 
         'VendorAccessKey' => 'TWX45IX2R9G35394', 
-        'Batch' => [{:order => order.soap_data}]).returns(:success)
+        'Batch' => {'Order' => order.soap_data}).returns(:success)
       subject.submit
     end    
 

@@ -18,16 +18,16 @@ module Blastramp
         soap.body = {
           'VendorCode' => session.vendor_code,
           'VendorAccessKey' => session.vendor_access_key,
-          'Batch' => orders.collect {|o| {:order => o.soap_data}}
+          'Batch' => {'Order' => orders[0].soap_data}
         }
       end
-      if (response.to_hash[:result] == 'SUCCESS')      
+      if (response.to_hash[:result] == 'SUCCESS' && response.to_hash[:orderids])
         response.to_hash[:orderids][:string]
       elsif (response.to_hash[:error] == 'Failed to Authenticate.')
         raise(AuthenticationFailure.new)
       else
         raise "Blastramp: An unknown error occured"
       end
-    end
+    end    
   end
 end
