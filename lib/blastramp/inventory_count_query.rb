@@ -37,7 +37,11 @@ module Blastramp
           inventory_count
         end
       else
-        raise(SKUDoesNotExistError.new)
+        if (response.to_hash[:error_number] == '20')
+          raise(SKUDoesNotExistError.new)
+        else
+          raise(AuthenticationFailure.new)
+        end
       end
 
     end

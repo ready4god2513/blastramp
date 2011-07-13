@@ -63,6 +63,17 @@ describe Blastramp::InventoryCountQuery do
         expect{subject.find_by_whid('AAA-01-XX','0001')}.to raise_error(Blastramp::SKUDoesNotExistError)
       end
     end
+    
+    context "when Failed to Authenticate" do
+      before :each do
+        savon.stubs('InventoryCountQuery').returns(:failed_to_authenticate)
+      end
+
+      it "returns an AuthenticationFailure" do
+        expect{subject.find('XXXX-99-XX')}.to raise_error(Blastramp::AuthenticationFailure)
+      end
+    end
+    
    
   end
 

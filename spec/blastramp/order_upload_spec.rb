@@ -20,6 +20,16 @@ describe Blastramp::OrderUpload do
         'Batch' => {:order => order.soap_data}).returns(:success)
       subject.submit
     end    
+
+    context "when Failed to Authenticate" do
+      before :each do
+        savon.stubs('OrderUpload').returns(:failed_to_authenticate)
+      end
+
+      it "returns an AuthenticationFailure" do
+        expect{subject.submit}.to raise_error(Blastramp::AuthenticationFailure)
+      end
+    end
   end
 
 end

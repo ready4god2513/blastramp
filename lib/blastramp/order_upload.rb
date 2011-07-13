@@ -21,7 +21,11 @@ module Blastramp
           'Batch' => {:order => order.soap_data}
         }
       end
-      response.to_hash[:result]
+      if (response.to_hash[:result] == 'SUCCESS')      
+        response.to_hash[:result]
+      elsif (response.to_hash[:error] == 'Failed to Authenticate.')
+        raise(AuthenticationFailure.new)
+      end      
     end
   end
 end
