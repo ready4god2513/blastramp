@@ -12,15 +12,6 @@ describe Blastramp::OrderUpload do
   end
   
   describe "order_upload" do
-
-    it "uses OrderUpload on API" do
-      savon.expects('OrderUpload').with(
-        'VendorCode' => 'ABC', 
-        'VendorAccessKey' => 'TWX45IX2R9G35394', 
-        'Batch' => {'Order' => order.soap_data}).returns(:success)
-      subject.submit
-    end    
-
     context "when Failed to Authenticate" do
       before :each do
         savon.stubs('OrderUpload').returns(:failed_to_authenticate)

@@ -18,7 +18,7 @@ module Blastramp
         soap.body = {
           'VendorCode' => session.vendor_code,
           'VendorAccessKey' => session.vendor_access_key,
-          'Batch' => {'Order' => orders[0].soap_data}
+          'Batch' => Blastramp::OrderBatch.new(orders).soap_data
         }
       end
       if (response.to_hash[:result] == 'SUCCESS' && response.to_hash[:orderids])

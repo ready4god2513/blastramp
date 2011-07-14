@@ -11,14 +11,6 @@ describe Blastramp::InventoryCountQuery do
   end
   
   describe "inventory_count_query" do
-    it "uses InventoryCountQuery on API" do
-      savon.expects('InventoryCountQuery').with(
-        'VendorCode' => 'ABC', 
-        'VendorAccessKey' => 'TWX45IX2R9G35394', 
-        'Sku' => 'AAA-01-XX').returns(:many)
-      subject.find('AAA-01-XX')
-    end
-    
     context "when many InventoryCounts exist" do
       before :each do
         savon.stubs('InventoryCountQuery').returns(:many)
