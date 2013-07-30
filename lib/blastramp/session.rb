@@ -11,9 +11,7 @@ module Blastramp
     
     # Returns the Savon::Client used to connect to Blastramp
     def client      
-      @client ||= Savon::Client.new do
-        wsdl.document = self.endpoint
-      end
+      @client ||= Savon.client(wsdl: self.endpoint)
     end
     
     # Provides access to the inventory counts
