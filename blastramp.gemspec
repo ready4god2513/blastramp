@@ -19,9 +19,17 @@ Gem::Specification.new do |s|
   s.executables   = `git ls-files -- bin/*`.split("\n").map{ |f| File.basename(f) }
   s.require_paths = ["lib"]
 
-  s.add_development_dependency "activesupport", "~> 3.0.3"
-  s.add_development_dependency "rspec", "~> 2.3.0"
-  s.add_development_dependency "mocha", "~> 0.9.8"
-  s.add_development_dependency "savon", "= 0.9.3"
-  s.add_development_dependency "savon_spec", "~> 0.1.6"
+  s.add_dependency "activesupport", "~> 3.0.3"
+  s.add_dependency "savon", "= 0.9.3"
+  
+
+  if s.respond_to?(:add_development_dependency)
+    s.add_development_dependency "rspec", "~> 2.3.0"
+    s.add_development_dependency "mocha", "~> 0.9.8"
+    s.add_development_dependency "savon_spec", "~> 0.1.6"
+  else
+    s.add_dependency "rspec", "~> 2.3.0"
+    s.add_dependency "mocha", "~> 0.9.8"
+    s.add_dependency "savon_spec", "~> 0.1.6"
+  end
 end
