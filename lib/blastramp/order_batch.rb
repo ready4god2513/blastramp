@@ -11,9 +11,9 @@ module Blastramp
     # to be sent via SOAP
     def soap_data
       data = ActiveSupport::OrderedHash.new
-      data[:order] = []
+      data["Order"] = []
       orders.each do |o|
-        data[:order] << o.soap_data
+        data["Order"] << o.soap_data
       end
       data
     end
