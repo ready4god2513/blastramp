@@ -20,7 +20,7 @@ Gem::Specification.new do |s|
   s.require_paths = ["lib"]
 
   s.add_dependency "activesupport", "~> 4.0.0"
-  s.add_dependency "savon", "~> 2.2.0"
+  s.add_dependency "savon", "= 0.9.3"
   
 
   if s.respond_to?(:add_development_dependency)
