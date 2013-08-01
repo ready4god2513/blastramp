@@ -42,7 +42,7 @@ module Blastramp
       data['startDate'] = start_date
       data['expiryDate'] = expiry_date
       data['numOfCartons'] = num_of_cartons if number_of_cartons.to_i > 0
-      data['weight'] = weight if number_of_cartons.to_f > 0.00
+      data['weight'] = weight if weight.to_f > 0.00
       data['shipMethod'] = ship_method
       data['orderTerms'] = order_terms
       data['orderType'] = order_type
